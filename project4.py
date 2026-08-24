@@ -1,3 +1,6 @@
+from requests import get
+
+
 def print_board(board):
     for i, row in enumerate(board):
         row_str = " "
@@ -40,7 +43,7 @@ def check_win(board, turn):
     ]
     for line in lines:
         win = True
-        for row, col in line:
+        for row, col in line: 
             if board[row][col] != turn:
                 win = False
                 break
@@ -64,6 +67,11 @@ print_board(board)
 while turn_number < 9:
     print()
     print("It is the ", turn, "players turn. Please select your move.")
+    if turn == "O":
+        computer_move()
+    else:
+        get_move(turn, board)
+    
     get_move(turn, board)
     print_board(board)
     winner = check_win(board, turn)
